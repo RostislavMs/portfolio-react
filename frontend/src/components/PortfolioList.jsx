@@ -7,8 +7,10 @@ export default function PortfolioList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://portfolio-react-lnvm.onrender.com/api/portfolio?page=${currentPage}&limit=${itemsPerPage}`
@@ -16,9 +18,30 @@ export default function PortfolioList() {
       .then((res) => {
         setPortfolio(res.data.items);
         setTotalPages(res.data.totalPages);
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, [currentPage, itemsPerPage]);
+
+  function ServerKeepAlive() {
+    useEffect(() => {
+      const pingServer = () => {
+        axios
+          .get("https://portfolio-react-lnvm.onrender.com/api/ping")
+          .catch(() => {});
+      };
+
+      const interval = setInterval(pingServer, 12 * 60 * 1000);
+      return () => clearInterval(interval);
+    }, []);
+
+    return null;
+  }
+
+  ServerKeepAlive();
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
@@ -30,44 +53,55 @@ export default function PortfolioList() {
 
   return (
     <div>
-      <div className="portfolio__list">
-        {portfolio.map((project) => (
-          <PortfolioCard project={project} key={project._id} />
-        ))}
+      <div className={loading ? "portfolio__list loading" : "portfolio__list"}>
+        {loading ? (
+          <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+          </div>
+        ) : (
+          portfolio.map((project) => (
+            <PortfolioCard project={project} key={project._id} />
+          ))
+        )}
       </div>
-      <div className="portfolio__pagination pagination-portfolio">
-        <button
-          className="pagination-portfolio__btn-prev"
-          onClick={handlePrevPage}
-          disabled={currentPage === 1}
-        >
-          <box-icon name="left-arrow-alt"></box-icon>
-        </button>
+      {!loading && (
+        <div className="portfolio__pagination pagination-portfolio">
+          <button
+            className="pagination-portfolio__btn-prev"
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+          >
+            <box-icon name="left-arrow-alt"></box-icon>
+          </button>
 
-        <div className="pagination-portfolio__pages-num">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`${
-                currentPage === index + 1
-                  ? "pagination-portfolio__btn-item active"
-                  : "pagination-portfolio__btn-item"
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}{" "}
+          <div className="pagination-portfolio__pages-num">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`${
+                  currentPage === index + 1
+                    ? "pagination-portfolio__btn-item active"
+                    : "pagination-portfolio__btn-item"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}{" "}
+          </div>
+
+          <button
+            className="pagination-portfolio__btn-next"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <box-icon name="right-arrow-alt"></box-icon>
+          </button>
         </div>
-
-        <button
-          className="pagination-portfolio__btn-next"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          <box-icon name="right-arrow-alt"></box-icon>
-        </button>
-      </div>
+      )}
     </div>
   );
 }

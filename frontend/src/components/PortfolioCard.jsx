@@ -33,6 +33,9 @@ export default function PortfolioCard({ project }) {
             ))}
         </div>
         <div className="card-portfolio__actions">
+          <a href={project.link_preview} className="card-portfolio__btn button">
+            View Project
+          </a>
           {project.link_github && (
             <a
               href={project.link_github}
