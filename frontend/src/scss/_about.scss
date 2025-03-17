@@ -1,0 +1,42 @@
+.about {
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 40px;
+  &__label {
+    margin: 20px 0 24px;
+  }
+  .info-about {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+
+    animation: info-about 1s;
+
+    &__item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      font-size: 18px;
+
+      a:hover {
+        color: $--c-secondary;
+      }
+    }
+    &__label {
+      color: $--c-active;
+      font-weight: 600;
+    }
+  }
+}
+
+@keyframes info-about {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

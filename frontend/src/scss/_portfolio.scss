@@ -1,0 +1,208 @@
+.portfolio {
+  &__list {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 20px 30px;
+  }
+  .card-portfolio {
+    border: 2px solid $--c-active;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2),
+      0 6px 20px rgba(0, 200, 255, 0.19);
+    display: flex;
+    flex-direction: column;
+
+    &:nth-child(1) {
+      animation: portfolio-card 0.8s;
+    }
+    &:nth-child(2) {
+      animation: portfolio-card 1s;
+    }
+    &:nth-child(3) {
+      animation: portfolio-card 1.5s;
+    }
+    &:nth-child(4) {
+      animation: portfolio-card 2s;
+    }
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+      aspect-ratio: 16/9;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    &__img-link {
+      border-radius: 15px;
+      flex: 1 0 auto;
+      overflow: hidden;
+      display: block;
+      width: 100%;
+    }
+    &__body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    &__title {
+      &-link {
+        font-size: 24px;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+
+        &:hover {
+          color: $--c-active;
+        }
+      }
+    }
+    &__description {
+      margin: 12px 0 20px;
+    }
+    &__skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      &-item {
+        padding: 5px 8px;
+        border-radius: 8px;
+        border: 1px solid $--c-active;
+        line-height: 1;
+      }
+    }
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+    &__link-btn {
+      padding: 5px;
+      border-radius: 50%;
+      border: 2px solid $--c-active;
+      width: 50px;
+      aspect-ratio: 1/1;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      fill: $--c-main;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: 0.3s ease-in-out;
+
+      box-icon {
+        width: 100%;
+        height: 100%;
+        font-size: 24px;
+      }
+
+      &::before {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $--c-active;
+        transition: 0.3s ease-in-out;
+      }
+
+      &:hover {
+        fill: $--c-dark-light;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+    }
+  }
+
+  .pagination-portfolio {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    &__btn-prev,
+    &__btn-next,
+    &__btn-item {
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: $--c-active;
+        fill: $--c-active;
+      }
+    }
+    &__btn-prev,
+    &__btn-next {
+      border-radius: 50%;
+      padding: 5px;
+      border: 1px solid $--c-active;
+      display: flex;
+      align-items: center;
+      fill: $--c-main;
+
+      &:disabled {
+        border-color: $--c-secondary;
+        fill: $--c-secondary;
+      }
+    }
+    &__pages-num {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    &__btn-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1/1;
+      width: 35px;
+      line-height: 1;
+      padding: 5px;
+      border-radius: 50%;
+      border: 1px solid $--c-secondary;
+
+      &.active {
+        border-color: $--c-active;
+        color: $--c-active;
+      }
+    }
+  }
+}
+
+@media (max-width: $--bp-tablet) {
+  .portfolio {
+    .card-portfolio {
+      &__body {
+        padding: 20px 10px;
+      }
+    }
+  }
+}
+
+@keyframes portfolio-card {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

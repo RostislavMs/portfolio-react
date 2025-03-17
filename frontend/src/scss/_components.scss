@@ -1,0 +1,88 @@
+.title {
+  font-size: 80px;
+  display: inline-block;
+  font-weight: 700;
+
+  span {
+    color: $--c-active;
+  }
+}
+.title--section {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.4;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    width: 40px;
+    height: 4px;
+    background-color: $--c-active;
+  }
+  &::before {
+    left: 0px;
+  }
+  &::after {
+    top: 5px;
+    right: 0px;
+  }
+}
+@media (max-width: $--bp-smal-desktop) {
+  .title {
+    font-size: 60px;
+  }
+  .title--section {
+    font-size: 40px;
+  }
+}
+@media (max-width: $--bp-tablet) {
+  .title {
+    font-size: 48px;
+  }
+  .title--section {
+    font-size: 36px;
+
+    &::before,
+    &::after {
+      height: 3px;
+    }
+  }
+}
+// ========================================
+.label {
+  font-size: 24px;
+  font-weight: 600;
+
+  span {
+    color: $--c-active;
+  }
+}
+// ========================================
+.text {
+  display: grid;
+  gap: 5px;
+  line-height: 1.4;
+}
+// ========================================
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.4;
+  color: $--c-main;
+  border-radius: 10px;
+  border: 2px solid $--c-active;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    border-color: $--c-main;
+    background-color: $--c-active;
+    color: $--c-dark-light;
+  }
+}

@@ -1,0 +1,169 @@
+.skills {
+  &__items {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .item-skill {
+    &__info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    &__title {
+      text-transform: lowercase;
+      font-weight: 500;
+      font-size: 24px;
+      &:first-letter {
+        text-transform: uppercase;
+        color: $--c-active;
+      }
+    }
+    &__num {
+      font-size: 24px;
+    }
+    &__progress {
+      position: relative;
+      width: 100%;
+      height: 10px;
+      background-color: $--c-secondary;
+      border-radius: 5px;
+      margin-top: 5px;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: $--c-active;
+      }
+    }
+
+    &.html {
+      .item-skill__progress::before {
+        width: 90%;
+        animation: bar-html 2s;
+      }
+    }
+    &.css {
+      .item-skill__progress::before {
+        width: 80%;
+        animation: bar-css 2s;
+      }
+    }
+    &.scss {
+      .item-skill__progress::before {
+        width: 50%;
+        animation: bar-scss 2s;
+      }
+    }
+    &.js {
+      .item-skill__progress::before {
+        width: 30%;
+        animation: bar-js 2s;
+      }
+    }
+    &.react {
+      .item-skill__progress::before {
+        width: 15%;
+        animation: bar-react 2s;
+      }
+    }
+    &.php {
+      .item-skill__progress::before {
+        width: 5%;
+        animation: bar-php 2s;
+      }
+    }
+    &.vite {
+      .item-skill__progress::before {
+        width: 5%;
+        animation: bar-vite 2s;
+      }
+    }
+    &.photoshop {
+      .item-skill__progress::before {
+        width: 7%;
+        animation: bar-photoshop 2s;
+      }
+    }
+  }
+}
+
+@media (max-width: $--bp-tablet) {
+  .skills {
+    &__items {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+}
+
+@keyframes bar-html {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 90%;
+  }
+}
+@keyframes bar-css {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80%;
+  }
+}
+@keyframes bar-js {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 30%;
+  }
+}
+@keyframes bar-scss {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes bar-react {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 15%;
+  }
+}
+@keyframes bar-php {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 5%;
+  }
+}
+@keyframes bar-vite {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 5%;
+  }
+}
+@keyframes bar-photoshop {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 7%;
+  }
+}
