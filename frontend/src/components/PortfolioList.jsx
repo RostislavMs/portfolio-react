@@ -11,7 +11,7 @@ export default function PortfolioList() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/portfolio?page=${currentPage}&limit=${itemsPerPage}`
+        `https://portfolio-react-lnvm.onrender.com/api/portfolio?page=${currentPage}&limit=${itemsPerPage}`
       )
       .then((res) => {
         setPortfolio(res.data.items);
