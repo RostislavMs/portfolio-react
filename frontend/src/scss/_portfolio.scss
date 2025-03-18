@@ -209,7 +209,15 @@
 // Loader
 .portfolio__list.loading {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  .loader-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+  }
   .loader {
     --dim: 3rem;
     width: var(--dim);

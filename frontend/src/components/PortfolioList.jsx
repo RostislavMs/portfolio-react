@@ -54,12 +54,13 @@ export default function PortfolioList() {
   return (
     <div>
       <div className={loading ? "portfolio__list loading" : "portfolio__list"}>
+        {loading ? <p className="loader-text">Server wakes up</p> : ""}
         {loading ? (
-          <div class="loader">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+          <div className="loader">
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
           </div>
         ) : (
           portfolio.map((project) => (

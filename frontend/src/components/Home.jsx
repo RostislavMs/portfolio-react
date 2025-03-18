@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </div>
       <div className="home__image">
-        <img src="./home.png" alt="" />
+        <img src="./home.webp" alt="" />
       </div>
     </section>
   );
